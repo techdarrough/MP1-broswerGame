@@ -13,63 +13,50 @@ function createDeck () {
             deck.push(card); // pop  card into deck array
         });
         
-
+        
     });
 }
 createDeck();
-// console.log(deck)
 
-console.log(deck)
 
 //create function to shuffle deck 
-let shuffleDeck = () => {
+let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffles the deck once using sort
+//  ternary operator resulted in infinite loop
+// const times = numberOfTimes => callback => {(numberOfTimes > 0)? times ( numberOfTimes--)(callback) : callback} 
 
-
-    deck.sort(() =>{return .05 - Math.random()}) //shuffle the deck once
-
-}
-// 
-
-const times = numberOfTimes => callback => {
+const times =  numberOfTimes => callback => {
     if (numberOfTimes > 0) {
       callback()
       times (numberOfTimes - 1) (callback)
     }
   }
-// function times(numberOfTimes) {
-//     return callback => {
-//         if (numberOfTimes > 0) {
-//             callback();
-//             times(numberOfTimes - 1)(callback);
-//         }
-//     };
-// }
-times(1000) (()=>{shuffleDeck()})
-// function shuffleDeck(array) {
-//     deck.reverse().forEach((array, i) =>{
-       
-//        let swap = Math.floor(Math.random() * i)
-//            deck.sort(() =>{return .05 - Math.random()}) 
-    // deck.sort(() =>{return .05 - Math.random()}) 
-    // deck.sort(() =>{return .05 - Math.random()}) 
-    // deck.sort(() =>{return .05 - Math.random()}) 
-//     //    console.log(i)
 
+times(1000) (()=>{shuffleDeck()}) // maybe change static value to user input
 
-  
-       
-//     } )
-    
-// }
-
-// function shuffleArray (array) {
-//     for (let i = array.lenght -1; i > 0;  i--) {
-//         const j = Math.floor(Math.random() * (i * 1) );
-//         [array[i], array[j]] = [array[j], array[i]];
-//     }
-// }
-// shuffleArray(deck)
-// shuffleDeck()
-// shuffleDeck()
 console.log(deck)
 
+//create player 
+
+let players = new Array();
+function createPlayers(numberOfPlayers) {
+    players = new Array(); //clears previous hand
+    let num = [numberOfPlayers]
+num.forEach((element, i)=>{
+        let hand = new Array();
+        let player = {name: 'Player ' + i, ID: i, Score: 0, hand: hand};
+        players.push(player);
+    })
+}
+
+// let players = new Array();
+// function createPlayers(num) {
+//     players = new Array();
+//     for (let i = 0; i <= num; i++) {
+//         let hand = new Array();
+//         let player = {name: 'Player ' + i, ID: i, Score: 0, hand: hand};
+//         players.push(player);
+//     }
+// }
+
+createPlayers(3)
+console.log(players)
