@@ -12,23 +12,64 @@ function createDeck () {
             let card = { Value: value, Suit: suit, Weight: weight  };
             deck.push(card); // pop  card into deck array
         });
+        
+
     });
 }
 createDeck();
 // console.log(deck)
 
-
+console.log(deck)
 
 //create function to shuffle deck 
-//
-function shuffleDeck() {
-    deck.reverse().forEach((array, i) =>{
-        console.log(array, i)
-  
-        // console.log(indexPosition1)
-        // console.log(indexPosition2)
-    } )
-    
+let shuffleDeck = () => {
+
+
+    deck.sort(() =>{return .05 - Math.random()}) //shuffle the deck once
+
 }
-shuffleDeck()
+// 
+
+const times = numberOfTimes => callback => {
+    if (numberOfTimes > 0) {
+      callback()
+      times (numberOfTimes - 1) (callback)
+    }
+  }
+// function times(numberOfTimes) {
+//     return callback => {
+//         if (numberOfTimes > 0) {
+//             callback();
+//             times(numberOfTimes - 1)(callback);
+//         }
+//     };
+// }
+times(1000) (()=>{shuffleDeck()})
+// function shuffleDeck(array) {
+//     deck.reverse().forEach((array, i) =>{
+       
+//        let swap = Math.floor(Math.random() * i)
+//            deck.sort(() =>{return .05 - Math.random()}) 
+    // deck.sort(() =>{return .05 - Math.random()}) 
+    // deck.sort(() =>{return .05 - Math.random()}) 
+    // deck.sort(() =>{return .05 - Math.random()}) 
+//     //    console.log(i)
+
+
+  
+       
+//     } )
+    
+// }
+
+// function shuffleArray (array) {
+//     for (let i = array.lenght -1; i > 0;  i--) {
+//         const j = Math.floor(Math.random() * (i * 1) );
+//         [array[i], array[j]] = [array[j], array[i]];
+//     }
+// }
+// shuffleArray(deck)
+// shuffleDeck()
+// shuffleDeck()
+console.log(deck)
 
