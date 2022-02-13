@@ -37,26 +37,26 @@ console.log(deck)
 
 //create player 
 
-let players = new Array();
-function createPlayers(numberOfPlayers) {
-    players = new Array(); //clears previous hand
-    let num = [numberOfPlayers]
-num.forEach((element, i)=>{
-        let hand = new Array();
-        let player = {name: 'Player ' + i, ID: i, Score: 0, hand: hand};
-        players.push(player);
-    })
-}
-
 // let players = new Array();
-// function createPlayers(num) {
-//     players = new Array();
-//     for (let i = 0; i <= num; i++) {
+// function createPlayers(numberOfPlayers) {
+//     players = new Array(); //clears previous hand
+//     let num = [numberOfPlayers]
+// num.forEach((element, i)=>{
 //         let hand = new Array();
 //         let player = {name: 'Player ' + i, ID: i, Score: 0, hand: hand};
 //         players.push(player);
-//     }
+//     })
 // }
+
+let players = new Array();
+function createPlayers(num) {
+    players = new Array();
+    for (let i = 0; i <= num; i++) {
+        let hand = new Array();
+        let player = {name: 'Player ' + i, ID: i, Score: 0, hand: hand};
+        players.push(player);
+    }
+}
 
 createPlayers(3)
 console.log(players)
