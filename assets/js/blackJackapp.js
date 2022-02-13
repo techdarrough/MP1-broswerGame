@@ -12,11 +12,12 @@ function createDeck () {
     deck = new Array();
     //for each loops to populate deck array
     values.forEach(value => {suits.forEach((suit) => {
-        let weight = parseInt(value);  // sets weight var to be able to assign nurmeric value to all cards
-                 
-            //value == 'J' || value == 'Q' || value == 'K' ? (weight = '10') : value == 'A' ? (weight = '11') :    // ternary operators conditionals used to set value of faces cards 
-                        
-            if (value === "J" || value=== "Q" || value === "K")  {weight = 10;} else if (value === "A")  {weight = 11}  ;  //   couldn't get the ternary work going back to if statment
+        let weight = parseInt(value);  // sets weight var to int to be able to assign nurmeric value to all cards
+               
+           weight = (value == 'J' || value == 'Q' || value == 'K') ? weight = 10 :  (value == 'A') ? weight = 11:  value // ternary operators conditionals used to set value of faces cards 
+            //   weight = (value === "J" || value === "Q"  || value === "K"  ?  10 
+            //     :  value ===  "A"  ?  11 
+            // if (value === "J" || value=== "Q" || value === "K")  {weight = 10;} else if (value === "A")  {weight = 11}  ;  //   couldn't get the ternary work going back to if statment
             let card = { Value: value, Suit: suit, Weight: weight  };
             deck.push(card); // pop  card into deck array
         });
