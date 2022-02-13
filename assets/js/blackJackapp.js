@@ -21,18 +21,19 @@ function createDeck () {
            
             // console.log(suit)
             // sets weight var to be able to assign nurmeric value to all cards
-            let weight = parseInt(values[value]);
+            let weight = parseInt(value);
             // ternary operators conditionals used to set value of faces cards 
 
-        //    values[value] == 'J' || values[value] == 'Q' || values[value] == 'K' ? (weight = '10') : values[value] == 'A' ? (weight = '11') ;
+        //    value == 'J' || value == 'Q' || value == 'K' ? (weight = '10') : value == 'A' ? (weight = '11') :
     //   couldn't get it to work going back to if statment
-            if (value[values] === 'J' || values[value] === 'Q' || values[value] === 'K') { weight = 10}
+            if (value === "J" || value=== "Q" || value === "K")  {
+                weight = 10;}
             else
-            if (values[value] === 'A') { weight = 11 } ;
-            let card = { Value: values[value], Suit: suit, Weight: weight  };
+            if (value === "A")  {weight = 11}  ;
+            let card = { Value: value, Suit: suit, Weight: weight  };
             // console.log(card)
             deck.push(card);
-            // console.log(deck)
+          
            
 
             
@@ -48,7 +49,7 @@ function createDeck () {
 
 }
 createDeck();
-// console.log(deck)
+console.log(deck)
 
 
 
