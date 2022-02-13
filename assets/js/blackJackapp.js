@@ -26,12 +26,12 @@ function createDeck () {
 
         //    values[value] == 'J' || values[value] == 'Q' || values[value] == 'K' ? (weight = '10') : values[value] == 'A' ? (weight = '11') ;
     //   couldn't get it to work going back to if statment
-            if (value[values] === 'J' || values[value] === 'Q' || values[value] === 'K'); 
-            
-            if (values[value] === 'A') { weight = 11 } else { weight = values[value]} ;
+            if (value[values] === 'J' || values[value] === 'Q' || values[value] === 'K') { weight = 10}
+            else
+            if (values[value] === 'A') { weight = 11 } ;
             let card = { Value: values[value], Suit: suit, Weight: weight  };
             // console.log(card)
-            // deck.push(card);
+            deck.push(card);
             // console.log(deck)
            
 
