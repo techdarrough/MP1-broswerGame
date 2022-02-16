@@ -17,8 +17,6 @@ function createDeck () {
     });
 }
 
-
-
 //create function to shuffle deck  using sort
 let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffles entire the deck once using sort
 //  changing the range of math.random by subtracting .05 to randomly return postive and negative values (-.05 to .04999~)
@@ -35,7 +33,7 @@ const times =  numberOfTimes => callback => {
 
 times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input
 
-// console.log(deck)
+
 
 //create player 
 
@@ -61,7 +59,7 @@ function createPlayers(num) {
 }
 
 
-console.log(players)
+
 
 
 
@@ -114,7 +112,20 @@ function startGame() {
     
 }
 function dealHands() {
+    // deal cards to each player
+   // how to do a foreach with no array... using Array.from({lenght: x}, ()) to generate a dynamic array to irreate over twice Then deal each player from the player array 2 card objects and pop them out of the deck array
+   Array.from({length: 2}, (darray) => {
+       darray.forEach(()=>{
+           players.forEach(player => {
+               let card = deck.pop() // grab a card object
+               player.hand.push(card) // push card object into hand array player property
+               //render cards
+               // update score 
 
+               
+           });
+       })
+   })
 
 }
 function hitMe() {
@@ -122,7 +133,7 @@ function hitMe() {
 }
 
 function stand() {
-    
+
 }
 
 
