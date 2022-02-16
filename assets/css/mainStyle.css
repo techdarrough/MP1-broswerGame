@@ -1,11 +1,17 @@
+root {
+  --heightBackground: 100vh;
+
+}
+
 body {
+  color: antiquewhite;
   text-align: center;
-  text-decoration: ;
+  
 }
 #indexBody {
   
   margin: 0;
-  height: 100vh;
+  height: var(--heightBackground);
     /* background-image: url(./images/pexels-pavel-danilyuk-7594307.jpg); */
   background-image: url("https://images.pexels.com/photos/10368750/pexels-photo-10368750.jpeg");
   background-size: cover;
@@ -13,16 +19,16 @@ body {
 
 #blackJackBody {
   margin: 0;
-  height: 100vh;
+  height: var(--heightBackground);
     background-image: url("https://images.pexels.com/photos/7594307/pexels-photo-7594307.jpeg"); 
   /* background-image: url("https://images.pexels.com/photos/10368750/pexels-photo-10368750.jpeg?"); */
   background-size: cover;
 }
 
 a:link {
-  color: black;
+  color: grey;
 }
 
 a:visited {
-  color: black;
+  color: grey;
 }

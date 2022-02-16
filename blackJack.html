@@ -13,11 +13,21 @@
     <div class="game">
         <div class="game-main">
             <div class="game-choices">
-                <input type="button"  id="gameStart" class="btn" value="Deal" onclick="console.log(call start game function)">
-                <input type="button"  class=" btn" value="Hit Me" onclick="Call Hit Function">
+                <input type="button"  id="gameStart" class="btn" value="Deal" onclick="startGame()">
+                <input type="button"  class=" btn" value="Hit Me" onclick=hitMe()>
                 <input type="button"  class=" btn" value="Stand" onclick="Call stand fucntion">
 
             </div>
+            <div class="status" id="status"></div>
+    
+            <div id="deck" class="deck">
+                <div id="deckcount">52 Card Deck</div>
+            </div>
+    
+            <div id="players" class="players">
+            </div>
+    
+            <div class="clear"></div>
         </div>
         <h4><a href="./index.html">Others Games</a></h4>
     </div>
