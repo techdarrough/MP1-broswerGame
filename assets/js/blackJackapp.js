@@ -17,21 +17,6 @@ function createDeck () {
     });
 }
 
-//create function to shuffle deck  using sort
-let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffles entire the deck once using sort
-//  changing the range of math.random by subtracting .05 to randomly return postive and negative values (-.05 to .04999~)
-// unamed compare function will then sort implied a before b for postive values 
-// b come before a for negative values 
-
-// function that take two parms one being a callback fucntion in which I stick the shuffle sort function 
-const times =  numberOfTimes => callback => {
-    if (numberOfTimes > 0) {
-      callback()
-      times (numberOfTimes - 1) (callback)
-    }
-  }
-
-// times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input
 
 
 
@@ -88,11 +73,11 @@ function createPlayerUI() {
 
 
         pointsDiv.className ='points'
-        pointsDiv.id = `Points ${value.ID}`
-        playerDiv.id = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
+        pointsDiv.id = `Points_${value.ID}`
+        playerDiv.id = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID}`;
         playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
         playerDivId.innerHTML = `${value.name} ${value.Score}`
-        handDiv.id = `Hand  {value.hand}`;
+        handDiv.id = `Hand_${value.ID}`;
 
         playerDiv.appendChild(playerDivId);
         playerDiv.appendChild(handDiv);
@@ -103,6 +88,41 @@ function createPlayerUI() {
 
     }) // rerender fucntions  ?
    }
+
+
+//create function to shuffle deck  using sort
+let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffles entire the deck once using sort
+//  changing the range of math.random by subtracting .05 to randomly return postive and negative values (-.05 to .04999~)
+// unamed compare function will then sort implied a before b for postive values 
+// b come before a for negative values 
+
+// function that take two parms one being a callback fucntion in which I stick the shuffle sort function 
+const times =  numberOfTimes => callback => {
+    if (numberOfTimes > 0) {
+      callback()
+      times (numberOfTimes - 1) (callback)
+    }
+  }
+
+// times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input
+//start game onclick
+function startGame() {
+
+    document.querySelector('#gameStart').value = 'Restart'; //change button value
+    document.querySelector('#status').style.display="none";
+    currentPlayer = 0;
+    createDeck();
+    
+    times(1000) (()=>{shuffleDeck()});
+    createPlayers(1);
+    // console.log(deck);
+    createPlayerUI();
+    dealHands();
+    document.querySelector('#')
+    // console.log(players.hand);
+     
+}
+
 
 // Array.from({length: 2},(_, idx)=>{console.log(idx)})
 
@@ -139,19 +159,20 @@ function dealHands () {
         for (var x = 0; x < players.length; x++)
         {
             var card = deck.pop();
-            players[x].Hand.push(card);
+            players[x].hand.push(card);
             renderCard(card, x);
             updatePoints();
         }
     }
 
-// update deck?
+    updateDeck();
 }
 
 
 function renderCard(card, player)
 {
-    var hand = document.getElementById('hand' + player);
+    
+    let hand = document.querySelector(`#Hand_${player}`);
     hand.appendChild(getCardUI(card));
 }
 
@@ -159,37 +180,61 @@ function getCardUI(card)
 {
     let el = document.createElement('div');
     el.className = 'card';
-    el.innerHTML = card.Suit + ' ' + card.Value;
+    el.innerHTML = card.Suit + ' ' + card.Value;// replace witn image or icon
     return el;
 }
 
 
 
-function startGame() {
+function getPoints(player) { 
+    let points = 0;
+            for(let i = 0; i < players[player].Hand.length; i++)
+            {
+                points += players[player].Hand[i].Weight;
+            }
+            players[player].Points = points;
+            return points;
 
-    document.querySelector('#gameStart').value = 'Restart';
-    document.querySelector('#status').style.display="none";
-    currentPlayer = 0;
-    createDeck();
     
-    times(1000) (()=>{shuffleDeck()});
-    createPlayers(1);
-    // console.log(deck);
-    createPlayerUI();
-    dealHands();
-    document.querySelector('#')
-    // console.log(players.hand);
-     
 }
+
+function updatePoints()
+        {
+            for (let i = 0 ; i < players.length; i++)
+            {
+                getPoints(i);
+                document.getElementById('points_' + i).innerHTML = players[i].Points;
+            }
+        }
+
+
 function hitMe() {
+    var card = deck.pop();
+            players[currentPlayer].Hand.push(card);
+            renderCard(card, currentPlayer);
+            updatePoints();
+            updateDeck();
+            check();
 
 }
 
 function stand() {
+    if (currentPlayer != players.length-1) {
+        document.getElementById('player_' + currentPlayer).classList.remove('active');
+        currentPlayer += 1;
+        document.getElementById('player_' + currentPlayer).classList.add('active');
+    }
+
+    else {
+        end();
+    }
 
 }
 
 
+
+function updatePoints() {}
+function updateDeck(){}
 
 
 
