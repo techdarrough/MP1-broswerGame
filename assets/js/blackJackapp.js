@@ -76,7 +76,7 @@ function createPlayerUI() {
         pointsDiv.id = `Points_${value.ID}`
         playerDiv.id = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID}`;
         playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
-        playerDivId.innerHTML = `${value.name} ${value.Score}`
+        playerDivId.innerHTML = `${value.name} ${(value.ID === 0)?"Shows": "Score"} ${value.Score}`
         handDiv.id = `Hand_${value.ID}`;
 
         playerDiv.appendChild(playerDivId);
@@ -150,7 +150,7 @@ function startGame() {
             
 //         })
 //     })
-// }  none of this works
+// }  none of this works :(
 
 
 function dealHands () { 
@@ -180,7 +180,7 @@ function getCardUI(card)
 {
     let el = document.createElement('div');
     el.className = 'card';
-    el.innerHTML = card.Suit + ' ' + card.Value;// replace witn image or icon
+    el.innerHTML = `${card.Suit}  ${card.Value}`;// replace witn image or icon
     return el;
 }
 
