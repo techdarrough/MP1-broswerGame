@@ -31,7 +31,7 @@ const times =  numberOfTimes => callback => {
     }
   }
 
-times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input
+// times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input
 
 
 
@@ -53,7 +53,10 @@ function createPlayers(num) {
     players = new Array();
     for (let i = 0; i <= num; i++) {
         let hand = new Array(); // creates hand as empty array
-        let player = {name: 'Player ' + i, ID: i, Score: 0, hand: hand}; //creates player object
+        let player = {
+            name: (i === 0)?'Dealer':'Player', 
+            ID: i, Score: 0, 
+            hand: hand}; //creates player object
         players.push(player);
     }
 }
@@ -69,10 +72,10 @@ function createPlayers(num) {
 function createPlayerUI() {
     document.querySelector('.players').innerHTML = " "
     players.forEach((value)=>{
-        console.log(value.ID);
-        console.log(value.Score);
-        console.log(value.hand);
-        console.log(value.name);
+        // console.log(value.ID);
+        // console.log(value.Score);
+        // console.log(value.hand);
+        // console.log(value.name);
         
 
         let playerDiv = document.createElement('div');
@@ -86,10 +89,10 @@ function createPlayerUI() {
 
         pointsDiv.className ='points'
         pointsDiv.id = `Points ${value.ID}`
-        playerDiv.id = (value.ID === 0 )?`Dealer_${value.ID + 1}`:  `Player ${value.ID})`;
-        playerDiv.className
-        playerDivId.innerHTML = value.Score
-        handDiv.id = 'hand_' + value.hand;
+        playerDiv.id = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
+        playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
+        playerDivId.innerHTML = `${value.name} ${value.Score}`
+        handDiv.id = `Hand  {value.hand}`;
 
         playerDiv.appendChild(playerDivId);
         playerDiv.appendChild(handDiv);
@@ -98,35 +101,85 @@ function createPlayerUI() {
 
         
 
-    })
-   // rerender fucntions  ?
-   
+    }) // rerender fucntions  ?
+   }
 
+// Array.from({length: 2},(_, idx)=>{console.log(idx)})
+
+// deal cards to each player
+// how to do a foreach with no array... using Array.from({lenght: x}, (undefined, index, optionArg)=>{doSomething()}) to generate a dynamic array to irreate over twice Then deal each player from the player array 2 card objects and pop them out of the deck array
+// Array.from({lenght:2}, (_, idx) =>{
+//     idx.forEach((value) => {
+//         players.forEach((player) => {
+//           cardDealt = desk.pop();
+//           player.hand.push(cardDealt) ;
+//           console.log(cardDealt);
+//         })
+//         return
+//     })
+// })
+// function dealHands () {
+//     Array.from({lenght:2}, (_, idx) =>{
+//         idx.forEach((value) => {
+//             players.forEach((player) => {
+//               cardDealt = desk.pop();
+//               console.log(cardDealt);
+//               players.player.hand.push(cardDealt) ;
+//              console.log(cardDealt)
+//             })
+            
+//         })
+//     })
+// }  none of this works
+
+
+function dealHands () { 
+    for(var i = 0; i < 2; i++)
+    {
+        for (var x = 0; x < players.length; x++)
+        {
+            var card = deck.pop();
+            players[x].Hand.push(card);
+            renderCard(card, x);
+            updatePoints();
+        }
+    }
+
+// update deck?
 }
+
+
+function renderCard(card, player)
+{
+    var hand = document.getElementById('hand' + player);
+    hand.appendChild(getCardUI(card));
+}
+
+function getCardUI(card)
+{
+    let el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML = card.Suit + ' ' + card.Value;
+    return el;
+}
+
+
 
 function startGame() {
+
+    document.querySelector('#gameStart').value = 'Restart';
+    document.querySelector('#status').style.display="none";
+    currentPlayer = 0;
     createDeck();
-    console.log(deck)
-    createPlayers(1)
-    createPlayerUI()
     
-}
-function dealHands() {
-    // deal cards to each player
-   // how to do a foreach with no array... using Array.from({lenght: x}, ()) to generate a dynamic array to irreate over twice Then deal each player from the player array 2 card objects and pop them out of the deck array
-   Array.from({length: 2}, (darray) => {
-       darray.forEach(()=>{
-           players.forEach(player => {
-               let card = deck.pop() // grab a card object
-               player.hand.push(card) // push card object into hand array player property
-               //render cards
-               // update score 
-
-               
-           });
-       })
-   })
-
+    times(1000) (()=>{shuffleDeck()});
+    createPlayers(1);
+    // console.log(deck);
+    createPlayerUI();
+    dealHands();
+    document.querySelector('#')
+    // console.log(players.hand);
+     
 }
 function hitMe() {
 
