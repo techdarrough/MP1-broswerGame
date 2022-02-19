@@ -33,7 +33,7 @@ function createDeck () {
 //     })
 // }
 
-let players = new Array();
+
 function createPlayers(num) {
     players = new Array();
     for (let i = 0; i <= num; i++) {
@@ -64,14 +64,14 @@ function createPlayerUI() {
         
         let pointsDiv =  document.createElement('div')
 
-
+// setting html attributes checkout the use of both ternery oprators and temperate litterals
         pointsDiv.className ='points'
         pointsDiv.id = `Points_${value.ID}`
         playerDiv.id = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID}`;
         playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
         playerDivId.innerHTML = `${value.name} ${(value.ID === 0)?"Shows": "Score"} ${value.Score}`
         handDiv.id = `Hand_${value.ID}`;
-
+// render elements to page   
         playerDiv.appendChild(playerDivId);
         playerDiv.appendChild(handDiv);
         playerDiv.appendChild(pointsDiv);
@@ -79,7 +79,7 @@ function createPlayerUI() {
 
         
 
-    }) // rerender fucntions  ?
+    }) // rerender fucntions  here later with help fucntion
    }
 
 
@@ -88,6 +88,7 @@ let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffl
 //  changing the range of math.random by subtracting .05 to randomly return postive and negative values (-.05 to .04999~)
 // unamed compare function will then sort implied a before b for postive values 
 // b come before a for negative values 
+//  only changing the positions half the time didnt shuffle enough so I need to repeat the funciton a bunch to have more randomized order
 
 // function that take two parms one being a callback fucntion in which I stick the shuffle sort function 
 const times =  numberOfTimes => callback => {
@@ -97,21 +98,19 @@ const times =  numberOfTimes => callback => {
     }
   }
 
-// times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input
+// times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input so they can choose between min and max values problaly assign ten times weight to user input values
 //start game onclick
 function startGame() {
-
     document.querySelector('#gameStart').value = 'Restart'; //change button value
     document.querySelector('#status').style.display="none";
     currentPlayer = 0;
     createDeck();
-    
-    times(1000) (()=>{shuffleDeck()});
+        times(1000) (()=>{shuffleDeck()});
     createPlayers(1);
     // console.log(deck);
     createPlayerUI();
     dealHands();
-    document.querySelector('#')
+    document.querySelector(`#player_${currentPlayer}`).classList('active');
     // console.log(players.hand);
      
 }
@@ -146,28 +145,29 @@ function startGame() {
 // }  none of this works :(
 
 
-function dealHands () { 
+function dealHands () {   // Abandon array.from forEach and hard set length to 2
     for(let i = 0; i < 2; i++)
     {
-        for (let x = 0; x < players.length; x++)
+        for (let x = 0; x < players.length; x++)  // for each player 
         {
-            let card = deck.pop();
-            players[x].hand.push(card);
-            renderCard(card, x);
-            updatePoints();
+            let card = deck.pop(); // pop object out of deck array
+            players[x].hand.push(card); // place object in player Hand property
+            renderCard(card, x); // Function take 2 parms card and idx of array for player number 
+            updatePoints(); //must update points somehow (tobecompleted)
         }
     }
 
-    updateDeck();
+    updateDeck(); // must update deck count display on page
 }
 
 
-function renderCard(card, player)
-{
+function renderCard(card, player){
     
-    let hand = document.querySelector(`#Hand_${player}`);
-    hand.appendChild(getCardUI(card));
+    let hand = document.querySelector(`#Hand_${player}`);  //grab correct player using temperate litteral
+    hand.appendChild(getCardUI(card));       // envoke getCardUi function and append e
 }
+
+
 
 function getCardUI(card)
 {
@@ -224,10 +224,14 @@ function stand() {
 
 }
 
-
+function end(){
+    let winner = 0 
+    let score
+}
 
 function updatePoints() {}
 function updateDeck(){}
+function end() {}
 
 
 
