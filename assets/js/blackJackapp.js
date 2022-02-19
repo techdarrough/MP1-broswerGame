@@ -47,13 +47,6 @@ function createPlayers(num) {
 }
 
 
-
-
-
-
-
-
-
 function createPlayerUI() {
     document.querySelector('.players').innerHTML = " "
     players.forEach((value)=>{
@@ -154,11 +147,11 @@ function startGame() {
 
 
 function dealHands () { 
-    for(var i = 0; i < 2; i++)
+    for(let i = 0; i < 2; i++)
     {
-        for (var x = 0; x < players.length; x++)
+        for (let x = 0; x < players.length; x++)
         {
-            var card = deck.pop();
+            let card = deck.pop();
             players[x].hand.push(card);
             renderCard(card, x);
             updatePoints();
@@ -209,7 +202,7 @@ function updatePoints()
 
 
 function hitMe() {
-    var card = deck.pop();
+    let card = deck.pop();
             players[currentPlayer].Hand.push(card);
             renderCard(card, currentPlayer);
             updatePoints();
