@@ -8,8 +8,8 @@ let currentPlayer = 0
 function createDeck () {
     deck = new Array();    //clears  any previous array data 
     values.forEach(value => {suits.forEach((suit) => {      //for each loops to populate deck array
-    let weight = parseInt(value);  // sets weight var to int to be able to assign nurmeric value to all cards
-    weight = (value === 'J' || value == 'Q' || value === 'K') ? weight = 10 :  (value === 'A') ? weight = 11:  value // ternary operators conditionals used to set value of faces cards 
+    let weight = null;  // sets weight var to int to be able to assign nurmeric value to all cards
+    weight = (value === 'J' || value == 'Q' || value === 'K') ? weight = 10 :  (value === 'A') ? weight = 11:  parseInt(value) // ternary operators conditionals used to set value of faces cards 
             // if (value === "J" || value=== "Q" || value === "K")  {weight = 10;} else if (value === "A")  {weight = 11}  ;  //   couldn't get the ternary work going back to if statment
             let card = { Value: value, Suit: suit, Weight: weight  };
             deck.push(card); // pop card object into deck array
@@ -42,7 +42,8 @@ function createPlayers(num) {
         let hand = new Array(); // creates hand as empty array
         let player = {
             name: (i === 0)?'Dealer':'Player', 
-            ID: i, Score: 0, 
+            ID: i, 
+            Score: 0, 
             Hand: hand}; //creates player object later capatilized propery named to help aviod confusion
         players.push(player);
     }
@@ -50,37 +51,30 @@ function createPlayers(num) {
 
 
 function createPlayerUI() {
-    document.querySelector('.players').innerHTML = " "
-    players.forEach((value)=>{
-
-        
-
-        let playerDiv = document.createElement('div');
-    
-        let playerDivId = document.createElement('div')
-       
-        let handDiv = document.createElement('div')
-        
-        let pointsDiv =  document.createElement('div')
-
-// setting html attributes checkout the use of both ternery oprators and temperate litterals
-        pointsDiv.className ='points'
-        pointsDiv.id = `Points_${value.ID}`
-        playerDiv.id = (value.ID === 0 )?`Player_${value.ID}`:  `Player_${value.ID}`;
-        playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID}`:  `Player ${value.ID})`;  
-        playerDivId.innerHTML = `${value.name} ${(value.ID === 0)?"Shows": "Score"} ${value.Score}`;
-        // did he just --- yes, yes I did put a temperate litteral into a ternary operator!
-        handDiv.id = `Hand_${value.ID}`;
-// render elements to page   
-        playerDiv.appendChild(playerDivId);
-        playerDiv.appendChild(handDiv);
-        playerDiv.appendChild(pointsDiv);
-        document.getElementById('players').appendChild(playerDiv);
-
-        
-
-    }) // rerender fucntions  here later with help fucntion
-   }
+  document.querySelector(".players").innerHTML = " ";
+  players.forEach((value) => {
+    let playerDiv = document.createElement("div");
+    let playerDivId = document.createElement("div");
+    let handDiv = document.createElement("div");
+    let pointsDiv = document.createElement("div");
+    // setting html attributes checkout the use of both ternery oprators and temperate litterals
+    pointsDiv.className = "points";
+    pointsDiv.id = `Points_${value.ID}`;
+    playerDiv.id = value.ID === 0 ? `Player_${value.ID}` : `Player_${value.ID}`;
+    playerDiv.className =
+      value.ID === 0 ? `Dealer ${value.ID}` : `Player ${value.ID})`;
+    playerDivId.innerHTML = `${value.name} ${
+      value.ID === 0 ? "Shows" : "Score"
+    } ${value.Score}`;
+    // did he just --- yes, yes I did put a temperate litteral into a ternary operator!
+    handDiv.id = `Hand_${value.ID}`;
+    // render elements to page
+    playerDiv.appendChild(playerDivId);
+    playerDiv.appendChild(handDiv);
+    playerDiv.appendChild(pointsDiv);
+    document.getElementById("players").appendChild(playerDiv);
+  }); // rerender fucntions  here later with help fucntion
+}
 
 
 //create function to shuffle deck  using sort
@@ -172,7 +166,7 @@ function getCardUI(card)
 {
     let el = document.createElement('div');
     el.className = 'card';
-    el.innerHTML = `${card.Suit}  ${card.Value}`;// replace witn image or icon
+    el.innerHTML = ` ${card.Value} of ${card.Suit}`;// replace witn image or icon
     return el;
 }
 
@@ -184,7 +178,7 @@ function getPoints(player) {
             {
                 points += players[player].Hand[i].Weight;
             }
-            players[player].Points = points;
+            players[player].Score = points;
             return points;
 
     
@@ -195,7 +189,7 @@ function updatePoints()
             for (let i = 0 ; i < players.length; i++)
             {
                 getPoints(i);
-                document.getElementById('points_' + i).innerHTML = players[i].Points;
+                document.getElementById('Points_' + i).innerHTML = players[i].Score;
             }
         }
 
@@ -211,10 +205,11 @@ function hitMe() {
 }
 
 function stand() {
-    if (currentPlayer != players.length-1) {
-        document.getElementById('player_' + currentPlayer).classList.remove('active');
+    if (currentPlayer != players.length -1) {
+        document.querySelector(`#Player_${currentPlayer}`).classList.remove('active');
         currentPlayer += 1;
-        document.getElementById('player_' + currentPlayer).classList.add('active');
+        document.querySelector(`#Player_${currentPlayer}`).classList.add('active');
+        
     }
 
     else {
@@ -224,16 +219,24 @@ function stand() {
 }
 
 function end(){
-    let winner = 0 
-    let score
+    let winner = -1
+    let score = 0
+    players.forEach((player)=>{
+        if (player.score >= 21 &&  player.Score < 22 ){
+            winner = player;
+            
+        }
+        score = player.Score
+    })
+    document.querySelector('#status').innerHTML = `Winner ${winner.name}`;
+    document.querySelector('#status').style.display = "inline-block";
+
 }
 
-function updatePoints() {
 
-}
 function updateDeck(){}
-function end() {}
 
+function check() {}
 
 
 

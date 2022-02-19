@@ -3,6 +3,8 @@ root {
 
 }
 
+
+
 body {
   color: antiquewhite;
   text-align: center;
@@ -25,6 +27,8 @@ body {
   background-size: cover;
 }
 
+
+
 a:link {
   color: grey;
 }
@@ -32,3 +36,5 @@ a:link {
 a:visited {
   color: grey;
 }
+
+
