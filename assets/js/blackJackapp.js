@@ -2,9 +2,11 @@
 const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
 const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 let deck = new Array();
+let players = new Array();
+let currentPlayer = 0
 // function  to create deck
 function createDeck () {
-    deck = new Array();    //clears previous array data 
+    deck = new Array();    //clears  any previous array data 
     values.forEach(value => {suits.forEach((suit) => {      //for each loops to populate deck array
     let weight = parseInt(value);  // sets weight var to int to be able to assign nurmeric value to all cards
     weight = (value === 'J' || value == 'Q' || value === 'K') ? weight = 10 :  (value === 'A') ? weight = 11:  value // ternary operators conditionals used to set value of faces cards 
@@ -41,7 +43,7 @@ function createPlayers(num) {
         let player = {
             name: (i === 0)?'Dealer':'Player', 
             ID: i, Score: 0, 
-            hand: hand}; //creates player object
+            Hand: hand}; //creates player object later capatilized propery named to help aviod confusion
         players.push(player);
     }
 }
@@ -50,10 +52,7 @@ function createPlayers(num) {
 function createPlayerUI() {
     document.querySelector('.players').innerHTML = " "
     players.forEach((value)=>{
-        // console.log(value.ID);
-        // console.log(value.Score);
-        // console.log(value.hand);
-        // console.log(value.name);
+
         
 
         let playerDiv = document.createElement('div');
@@ -67,9 +66,10 @@ function createPlayerUI() {
 // setting html attributes checkout the use of both ternery oprators and temperate litterals
         pointsDiv.className ='points'
         pointsDiv.id = `Points_${value.ID}`
-        playerDiv.id = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID}`;
-        playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID + 1}`:  `Player ${value.ID})`;
-        playerDivId.innerHTML = `${value.name} ${(value.ID === 0)?"Shows": "Score"} ${value.Score}`
+        playerDiv.id = (value.ID === 0 )?`Player_${value.ID}`:  `Player_${value.ID}`;
+        playerDiv.className = (value.ID === 0 )?`Dealer ${value.ID}`:  `Player ${value.ID})`;  
+        playerDivId.innerHTML = `${value.name} ${(value.ID === 0)?"Shows": "Score"} ${value.Score}`;
+        // did he just --- yes, yes I did put a temperate litteral into a ternary operator!
         handDiv.id = `Hand_${value.ID}`;
 // render elements to page   
         playerDiv.appendChild(playerDivId);
@@ -110,9 +110,8 @@ function startGame() {
     // console.log(deck);
     createPlayerUI();
     dealHands();
-    document.querySelector(`#player_${currentPlayer}`).classList('active');
-    // console.log(players.hand);
-     
+    document.querySelector(`#Player_${currentPlayer}`).classList.add('active'); 
+  
 }
 
 
@@ -151,7 +150,7 @@ function dealHands () {   // Abandon array.from forEach and hard set length to 2
         for (let x = 0; x < players.length; x++)  // for each player 
         {
             let card = deck.pop(); // pop object out of deck array
-            players[x].hand.push(card); // place object in player Hand property
+            players[x].Hand.push(card); // place object in player Hand property
             renderCard(card, x); // Function take 2 parms card and idx of array for player number 
             updatePoints(); //must update points somehow (tobecompleted)
         }
@@ -202,7 +201,7 @@ function updatePoints()
 
 
 function hitMe() {
-    let card = deck.pop();
+            let card = deck.pop();
             players[currentPlayer].Hand.push(card);
             renderCard(card, currentPlayer);
             updatePoints();
@@ -229,7 +228,9 @@ function end(){
     let score
 }
 
-function updatePoints() {}
+function updatePoints() {
+
+}
 function updateDeck(){}
 function end() {}
 
