@@ -2,9 +2,14 @@
 Code Prompt
 for UNLV 
 
-Two simple games 
+one simple game
 
-That software dude inspired the back jack game
+That software dude  Web Dev Simplified
+ inspired the back jack game
+
+ https://www.youtube.com/watch?v=NxRwIZWjLtE 
+
+https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript
 
 Grepper for array sort 
 https://www.codegrepper.com/profile/audart-lucas
@@ -12,5 +17,4 @@ https://www.codegrepper.com/profile/audart-lucas
 
 https://262.ecma-international.org/6.0/#sec-array.from
 
-https://pixabay.com/vectors/atlasnye-deck-playing-cards-game-884206/
 

@@ -1,4 +1,3 @@
-// code inspiration from that software dude content from https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript
 const suits = ["&spadesuit;", "&heartsuit;", "&diamondsuit;", "&clubsuit;"];
 const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 let deck = new Array();
@@ -18,22 +17,6 @@ function createDeck () {
         
     });
 }
-
-
-
-
-//create player 
-
-// let players = new Array();
-// function createPlayers(numberOfPlayers) {
-//     players = new Array(); //clears previous hand
-//     let num = [numberOfPlayers]
-// num.forEach((element, i)=>{
-//         let hand = new Array();
-//         let player = {name: 'Player ' + element, ID: i, Score: 0, hand: hand};
-//         players.push(player);
-//     })
-// }
 
 
 function createPlayers(num) {
@@ -80,10 +63,10 @@ function createPlayerUI() {
 //create function to shuffle deck  using sort
 let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffles entire the deck once using sort
 //  changing the range of math.random by subtracting .05 to randomly return postive and negative values (-.05 to .04999~)
-// unamed compare function will then sort implied a before b for postive values 
+// anonymous  function will then sort implied a before b for postive values 
 // b come before a for negative values 
 //  only changing the positions half the time didnt shuffle enough so I need to repeat the funciton a bunch to have more randomized order
-
+// this is because sort wants to sort into an order so it not he best randomizer
 // function that take two parms one being a callback fucntion in which I stick the shuffle sort function 
 const times =  numberOfTimes => callback => {
     if (numberOfTimes > 0) {
@@ -95,7 +78,7 @@ const times =  numberOfTimes => callback => {
 // times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input so they can choose between min and max values problaly assign ten times weight to user input values
 //start game onclick
 function startGame() {
-    document.querySelector('#gameStart').value = 'Restart'; //change button value
+    document.querySelector('#gameStart').value = 'Re-Deal'; //change button value
     document.querySelector('#status').style.display="none";
     currentPlayer = 0;
     createDeck();
@@ -110,34 +93,6 @@ function startGame() {
 }
 
 
-// Array.from({length: 2},(_, idx)=>{console.log(idx)})
-
-// deal cards to each player
-// how to do a foreach with no array... using Array.from({lenght: x}, (undefined, index, optionArg)=>{doSomething()}) to generate a dynamic array to irreate over twice Then deal each player from the player array 2 card objects and pop them out of the deck array
-// Array.from({lenght:2}, (_, idx) =>{
-//     idx.forEach((value) => {
-//         players.forEach((player) => {
-//           cardDealt = desk.pop();
-//           player.hand.push(cardDealt) ;
-//           console.log(cardDealt);
-//         })
-//         return
-//     })
-// })
-// function dealHands () {
-//     Array.from({lenght:2}, (_, idx) =>{
-//         idx.forEach((value) => {
-//             players.forEach((player) => {
-//               cardDealt = desk.pop();
-//               console.log(cardDealt);
-//               players.player.hand.push(cardDealt) ;
-//              console.log(cardDealt)
-//             })
-            
-//         })
-//     })
-// }  none of this works :(
-
 
 function dealHands () {   // Abandon array.from forEach and hard set length to 2
     for(let i = 0; i < 2; i++)
@@ -147,7 +102,7 @@ function dealHands () {   // Abandon array.from forEach and hard set length to 2
             let card = deck.pop(); // pop object out of deck array
             players[x].Hand.push(card); // place object in player Hand property
             renderCard(card, x); // Function take 2 parms card and idx of array for player number 
-            updatePoints(); //must update points somehow (tobecompleted)
+            updatePoints(); //must update points 
         }
     }
 
@@ -168,13 +123,13 @@ function getCardUI(card)
 {
     let el = document.createElement('div');
     el.className = 'card';
-    el.innerHTML = ` ${card.Value} ${card.Suit}`;// replace witn image or icon
+    el.innerHTML = ` ${card.Value} ${card.Suit}`; // overlayed stlye using css    
     return el;
 }
 
 
 
-function getPoints(player) { 
+function getPoints(player) {  // get points and add them to player score object property
     let points = 0;
             for(let i = 0; i < players[player].Hand.length; i++)
             {
