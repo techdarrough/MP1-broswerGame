@@ -44,6 +44,14 @@ Photo by Johannes Plenio from Pexels
 
 
 .card {
-
-
+  height: 145px;
+  width: 90px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5rem ;
+  background-color: white;
+  color: black;
+  font-size: 4rem;
 }
