@@ -1,5 +1,5 @@
 // code inspiration from that software dude content from https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript
-const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
+const suits = ["&spadesuit;", "&heartsuit;", "&diamondsuit;", "&clubsuit;"];
 const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 let deck = new Array();
 let players = new Array();
@@ -159,6 +159,7 @@ function renderCard(card, player){
     
     let hand = document.querySelector(`#Hand_${player}`);  //grab correct player using temperate litteral
     hand.appendChild(getCardUI(card));       // envoke getCardUi function and append e
+
 }
 
 
@@ -167,7 +168,7 @@ function getCardUI(card)
 {
     let el = document.createElement('div');
     el.className = 'card';
-    el.innerHTML = ` ${card.Value} of ${card.Suit}`;// replace witn image or icon
+    el.innerHTML = ` ${card.Value} ${card.Suit}`;// replace witn image or icon
     return el;
 }
 

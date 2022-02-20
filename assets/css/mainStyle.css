@@ -1,4 +1,4 @@
-root {
+:root {
   --heightBackground: 100vh;
 
 }
@@ -25,16 +25,25 @@ body {
     background-image: url("https://images.pexels.com/photos/7594307/pexels-photo-7594307.jpeg"); 
   /* background-image: url("https://images.pexels.com/photos/10368750/pexels-photo-10368750.jpeg?"); */
   background-size: cover;
+  
+}
+#rouletteBody {
+  color: black;
+  margin: 0;
+  height: var(--heightBackground);
+    background-image: url("https://images.pexels.com/photos/1445324/pexels-photo-1445324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
+  /* 
+Photo by Johannes Plenio from Pexels
+ */
+  background-size: cover;
+  
 }
 
 
 
-a:link {
-  color: grey;
+
+
+.card {
+
+
 }
-
-a:visited {
-  color: grey;
-}
-
-

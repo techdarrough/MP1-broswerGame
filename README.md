@@ -12,5 +12,5 @@ https://www.codegrepper.com/profile/audart-lucas
 
 https://262.ecma-international.org/6.0/#sec-array.from
 
-
+https://pixabay.com/vectors/atlasnye-deck-playing-cards-game-884206/
 
