@@ -190,7 +190,8 @@ function updatePoints()
             for (let i = 0 ; i < players.length; i++)
             {
                 getPoints(i);
-                document.querySelector('#Points_' + i).innerHTML = players[i].Score ;
+                document.querySelector('#Points_' + i).innerHTML = 
+               players[i].ID === 0 ?  `Dealer Shows ${players[i].Score}` : `Player Score is    ${players[i].Score}`;
             }
         }
 
