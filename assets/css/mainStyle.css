@@ -1,4 +1,8 @@
 
+*, * ::after, *::before {
+  box-sizing: border-box;
+}/* recommended by web dev simplified  */
+
 
 
 body {
@@ -7,15 +11,16 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
  }
 
-a:visited {color: #060235}  
+a:visited {color: black}  
 a:hover {color: darkgreen}  
-a:active {color: #C0F0FC}  
-btn:hover {background-color;:gold}
+a:active {color: whitesmoke}  
+btn:hover {background-color: goldenrod;}
 
 #indexBody {  
   margin: 0;
   height: var(--heightBackground);
   background-image: url("https://images.pexels.com/photos/10368750/pexels-photo-10368750.jpeg");
+  /* casino sign photo Photo by Nicolas from Pexels */
   background-size: cover;
 }
 
@@ -23,24 +28,18 @@ btn:hover {background-color;:gold}
   margin: 0;
 
   background-image: url("https://images.pexels.com/photos/7594307/pexels-photo-7594307.jpeg"); 
+  /* Photo by Pavel Danilyuk from Pexels */
   background-size: cover;
   
 }
 #rouletteBody {
   color: black;
   margin: 0;
-  height: var(--heightBackground);
-    background-image: url("https://images.pexels.com/photos/1445324/pexels-photo-1445324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
-  /* 
-Photo by Johannes Plenio from Pexels
- */
-  background-size: cover;
   
+ background-image: url("https://images.pexels.com/photos/1445324/pexels-photo-1445324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
+  /* Photo by Johannes Plenio from Pexels*/
+ background-size: cover;  
 }
-
-
-
-
 
 .card {
   height: 145px;
@@ -53,13 +52,14 @@ Photo by Johannes Plenio from Pexels
   background-color: white;
   color: black;
   font-size: 4rem;
-  
 }
+
 .players {
   margin: 0;
+  text-align: center;
   display: grid;
   grid-template-columns: repeat(2, 4rem);
-  grid-template-rows: 3rem 7rem 3rem 3em;
+  grid-template-rows: auto ;
   gap: 2rem;
   justify-content: center;
   padding-top: 1rem;
@@ -67,8 +67,13 @@ Photo by Johannes Plenio from Pexels
 
 
 .game-choices {
+  margin: 0;
   text-align: center;
-  
+  display: grid;
+  grid-template-columns: repeat(3, 5rem);
+  grid-template-rows: 7rem;
+  justify-content: center;
+  gap: .5rem;
 
 }
 
