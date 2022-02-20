@@ -63,7 +63,7 @@ function createPlayerUI() {
     playerDiv.id = value.ID === 0 ? `Player_${value.ID}` : `Player_${value.ID}`;
     playerDiv.className =
       value.ID === 0 ? `Dealer ${value.ID}` : `Player ${value.ID})`;
-    playerDivId.innerHTML = `${value.name} ${
+    pointsDiv.innerHTML = `${value.name} ${
       value.ID === 0 ? "Shows" : "Score"
     } ${value.Score}`;
     // did he just --- yes, yes I did put a temperate litteral into a ternary operator!
@@ -104,6 +104,7 @@ function startGame() {
     // console.log(deck);
     createPlayerUI();
     dealHands();
+    check();
     document.querySelector(`#Player_${currentPlayer}`).classList.add('active'); 
   
 }
@@ -189,7 +190,7 @@ function updatePoints()
             for (let i = 0 ; i < players.length; i++)
             {
                 getPoints(i);
-                document.getElementById('Points_' + i).innerHTML = players[i].Score;
+                document.querySelector('#Points_' + i).innerHTML = players[i].Score ;
             }
         }
 
@@ -213,30 +214,43 @@ function stand() {
     }
 
     else {
+        check();
         end();
     }
 
 }
 
-function end(){
-    let winner = -1
-    let score = 0
-    players.forEach((player)=>{
-        if (player.score >= 21 &&  player.Score < 22 ){
-            winner = player;
-            
-        }
-        score = player.Score
-    })
-    document.querySelector('#status').innerHTML = `Winner ${winner.name}`;
-    document.querySelector('#status').style.display = "inline-block";
+function end() {
+  let winner = null;
+  let score = 0;
 
+  players.forEach((player) => {
+    if (player.Score > score && player.Score < 22) {
+      winner = player;
+    }
+    score = player.Score;
+  });
+
+
+    document.querySelector("#status").innerHTML =" Winner " + winner.name;
+    document.querySelector("#status").style.display = "inline-block";
+   
+}
+
+function check() {
+   if (players[currentPlayer].Score > 21) {
+
+       document.querySelector('#status').innerHTML = players[currentPlayer].name + " Busts";
+       document.querySelector('#status').style.display = "inline-block";
+       end();
+   }
+    
+}
+function updateDeck(){
+    document.querySelector('#deckcount').innerHTML = `${deck.length} cards left in the Deck`
 }
 
 
-function updateDeck(){}
-
-function check() {}
 
 
 
