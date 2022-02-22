@@ -80,6 +80,8 @@ const times =  numberOfTimes => callback => {
 function startGame() {
     document.querySelector('#gameStart').value = 'Re-Deal'; //change button value
     document.querySelector('#status').style.display="none";
+    document.querySelector('.players').style.display="flex";
+    
     currentPlayer = 0;
     createDeck();
         times(1000) (()=>{shuffleDeck()});
@@ -147,7 +149,7 @@ function updatePoints()
             {
                 getPoints(i);
                 document.querySelector('#Points_' + i).innerHTML = 
-               players[i].ID === 0 ?  `Dealer Shows ${players[i].Score}` : `Player Score is    ${players[i].Score}`;
+               players[i].ID === 0 ?  ` Shows ${players[i].Score}` : `Score ${players[i].Score}`;
             }
         }
 
@@ -190,7 +192,8 @@ function end() {
 
 
     document.querySelector("#status").innerHTML =" Winner " + winner.name;
-    document.querySelector("#status").style.display = "inline-block";
+    document.querySelector("#status").style.display = "block";
+    
    
 }
 
@@ -198,7 +201,8 @@ function check() {
    if (players[currentPlayer].Score > 21) {
 
        document.querySelector('#status').innerHTML = players[currentPlayer].name + " Busts";
-       document.querySelector('#status').style.display = "inline-block";
+       document.querySelector('#status').style.display = "block";
+       
        end();
    }
     
