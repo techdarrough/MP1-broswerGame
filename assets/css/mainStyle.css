@@ -1,32 +1,42 @@
 
 *, * ::after, *::before {
   box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    
 }/* recommended by web dev simplified  */
 
 
 
-body {
-  color: whitesmoke;
-  text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
- }
+#nav {
+  background-color: #efefef;
+  margin-top: 20 px;
+  padding: 10px 0px 5px 0px;
+}
 
 a:visited {color: black}  
 a:hover {color: darkgreen}  
 a:active {color: whitesmoke}  
-btn:hover {background-color: goldenrod;}
+
 
 #indexBody {  
   margin: 0;
-  height: var(--heightBackground);
-  background-image: url("https://images.pexels.com/photos/10368750/pexels-photo-10368750.jpeg");
+  color: #49060b;
+   background-image: url("https://images.pexels.com/photos/10368750/pexels-photo-10368750.jpeg");
   /* casino sign photo Photo by Nicolas from Pexels */
   background-size: cover;
 }
 
+p {
+  padding: 5px 10px 10px 10px;
+  font-size: large;
+  font-weight: bold;
+
+}
+
 #blackJackBody {
   margin: 0;
-
+  color: #beb3b3;
   background-image: url("https://images.pexels.com/photos/7594307/pexels-photo-7594307.jpeg"); 
   /* Photo by Pavel Danilyuk from Pexels */
   background-size: cover;
@@ -45,8 +55,8 @@ btn:hover {background-color: goldenrod;}
   height: 145px;
   width: 90px;
   border: 1px solid black;
-  display: flex;
-  justify-content: center;
+  flex: 1; 
+   justify-content: center;
   align-items: center;
   border-radius: .5rem ;
   background-color: white;
@@ -56,29 +66,8 @@ btn:hover {background-color: goldenrod;}
 
 .players {
   margin: 0;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(2, 4rem);
-  grid-template-rows: auto ;
-  gap: 2rem;
-  justify-content: center;
-  padding-top: 1rem;
-}
-
-
-.game-choices {
-  margin: 0;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(3, 5rem);
-  grid-template-rows: 7rem;
-  justify-content: center;
-  gap: .5rem;
-
-}
-
-#exit {
-  float: right;
+   padding-top: 1rem; 
+   display: flex; 
+   justify-content: center;
   
-}
-
+} 
