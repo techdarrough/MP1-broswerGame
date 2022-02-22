@@ -80,6 +80,7 @@ const times =  numberOfTimes => callback => {
 function startGame() {
     document.querySelector('#gameStart').value = 'Re-Deal'; //change button value
     document.querySelector('#status').style.display="none";
+    document.querySelector('#luck').style.display="none";
     document.querySelector('.players').style.display="flex";
     
     currentPlayer = 0;
