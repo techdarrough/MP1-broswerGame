@@ -21,3 +21,4 @@ Other references and inspiration pulled from follow books;
  HTML & CSS Design and Build Websites by Jon Duckkett
 JavaScript & JQuery Interactive Front-end Web Development by Jon Duckett
 
+Licensed Under the GNU General Public License v3.0
