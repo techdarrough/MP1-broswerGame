@@ -156,7 +156,7 @@ function updatePoints()
             {
                 getPoints(i);
                 document.querySelector('#Points_' + i).innerHTML = 
-               players[i].ID === 0 ?  ` Shows ${players[i].Score}` : `Score ${players[i].Score}`;
+               players[i].ID === 0 ?  ` ${players[i].name} ${players[i].Score}` : `${players[i].name} ${players[i].Score}`;
             }
         }
 
