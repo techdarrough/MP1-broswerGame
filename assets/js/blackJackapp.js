@@ -3,20 +3,26 @@ const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
 let deck = new Array();
 let players = new Array();
 let currentPlayer = 0
+
+
+
+
+
+
 // function  to create deck
 function createDeck () {
     deck = new Array();    //clears  any previous array data 
-    values.forEach(value => {suits.forEach((suit) => {      //for each loops to populate deck array
+    values.forEach(value => {suits.forEach((suit) => {      //for each loops to shiftulate deck array
     let weight = null;  // sets weight var to int to be able to assign nurmeric value to all cards
     weight = (value === 'J' || value == 'Q' || value === 'K') ? weight = 10 :  (value === 'A') ? weight = 11:  parseInt(value) // ternary operators conditionals used to set value of faces cards 
             // if (value === "J" || value=== "Q" || value === "K")  {weight = 10;} else if (value === "A")  {weight = 11}  ;  //   couldn't get the ternary work going back to if statment
             let card = { Value: value, Suit: suit, Weight: weight  };
-            deck.push(card); // pop card object into deck array
+            deck.push(card); // shift card object into deck array
         });
         
         
     });
-}
+};
 
 
 function createPlayers(num) {
@@ -30,7 +36,7 @@ function createPlayers(num) {
             Hand: hand}; //creates player object later capatilized propery named to help aviod confusion
         players.push(player);
     }
-}
+};
 
 
 function createPlayerUI() {
@@ -57,11 +63,11 @@ function createPlayerUI() {
     playerDiv.appendChild(pointsDiv);
     document.getElementById("players").appendChild(playerDiv);
   }); // rerender fucntions  here later with help fucntion
-}
+};
 
 
 //create function to shuffle deck  using sort
-let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } //shuffles entire the deck once using sort
+let shuffleDeck = () => {deck.sort(() =>{return .05 - Math.random()}) } ;//shuffles entire the deck once using sort
 //  changing the range of math.random by subtracting .05 to randomly return postive and negative values (-.05 to .04999~)
 // anonymous  function will then sort implied a before b for postive values 
 // b come before a for negative values 
@@ -73,7 +79,7 @@ const times =  numberOfTimes => callback => {
       callback()
       times (numberOfTimes - 1) (callback)
     }
-  }
+  };
 
 // times(1000) (()=>{shuffleDeck()}) // repeats deck shuffle 1000 times maybe change static value to user input so they can choose between min and max values problaly assign ten times weight to user input values
 //start game onclick
@@ -90,10 +96,10 @@ function startGame() {
     // console.log(deck);
     createPlayerUI();
     dealHands();
-    check();
     document.querySelector(`#Player_${currentPlayer}`).classList.add('active'); 
+    check()
   
-}
+};
 
 
 
@@ -102,7 +108,7 @@ function dealHands () {   // Abandon array.from forEach and hard set length to 2
     {
         for (let x = 0; x < players.length; x++)  // for each player 
         {
-            let card = deck.pop(); // pop object out of deck array
+            let card = deck.shift(); // shift object out of deck array using shift instead of pop to pull from top of deck array
             players[x].Hand.push(card); // place object in player Hand property
             renderCard(card, x); // Function take 2 parms card and idx of array for player number 
             updatePoints(); //must update points 
@@ -110,7 +116,7 @@ function dealHands () {   // Abandon array.from forEach and hard set length to 2
     }
 
     updateDeck(); // must update deck count display on page
-}
+};
 
 
 function renderCard(card, player){
@@ -118,7 +124,7 @@ function renderCard(card, player){
     let hand = document.querySelector(`#Hand_${player}`);  //grab correct player using temperate litteral
     hand.appendChild(getCardUI(card));       // envoke getCardUi function and append e
 
-}
+};
 
 
 
@@ -156,7 +162,7 @@ function updatePoints()
 
 
 function hitMe() {
-            let card = deck.pop();
+            let card = deck.shift(); 
             players[currentPlayer].Hand.push(card);
             renderCard(card, currentPlayer);
             updatePoints();
@@ -170,10 +176,12 @@ function stand() {
         document.querySelector(`#Player_${currentPlayer}`).classList.remove('active');
         currentPlayer += 1;
         document.querySelector(`#Player_${currentPlayer}`).classList.add('active');
+        updateDeck();
         
     }
 
     else {
+        updateDeck();
         check();
         end();
     }
@@ -209,14 +217,35 @@ function check() {
     
 }
 function updateDeck(){
-    document.querySelector('#deckcount').innerHTML = `${deck.length} cards left in the Deck`
+    document.querySelector('#deckcount').innerHTML = `${deck.length} cards left in the Deck ${players[currentPlayer].name}\'\s turn`
 }
 
 
+ let blackJackBtn = document.querySelector('#blackJackBtn')
+ let gameStartBtn = document.querySelector('#casinoMain')
+ let rouletteBtn = document.querySelector('#rouletteBtn')
+
+function notify() {
+    let update = document.querySelector('#luck');
+   update.innerHTML = `This is the BlackJack game`
+   }
+ 
 
 
 
 
+   function indexbuttonAction() {
+   window.open('./index.html', '_self');
+   };      
+   function roulettebuttonAction() {
+   window.window.open('./roulette.html', '_self');
+   };      
+   
+blackJackBtn.addEventListener("click", notify) 
+ gameStartBtn.addEventListener("click", indexbuttonAction);
+rouletteBtn.addEventListener('click', roulettebuttonAction)
+
+    
 
 
 
